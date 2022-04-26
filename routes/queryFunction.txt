@@ -1,0 +1,48 @@
+SELECT * FROM pavankumar_11thMAR2022;
+
+DELETE FROM pavankumar_11thMAR2022;
+
+SELECT * FROM dmtemp;
+
+SELECT * FROM fndmtemp('')
+
+select * from json_populate_record(null::json, '{"a":1,"b":2}')
+
+select * from json_populate_recordset( null::(a int, b int)::type, '[{"a":1,"b":2},{"a":3,"b":4}]')
+
+CREATE OR REPLACE FUNCTION public.fndmtemp(
+	p_guid character varying)
+    RETURNS void
+    LANGUAGE 'plpgsql'
+    COST 100
+    VOLATILE PARALLEL UNSAFE
+AS $dmtemp$
+DECLARE d_myrecords jsonb ;
+--DECLARE t1 record;
+--DECLARE n INTEGER;
+	BEGIN	
+--create type t as ("LMSReference" text, "CallCenterDisposition" text, "CallCenterDispositionDate" text);
+	
+	EXECUTE 'SELECT  filedata ::jsonb  FROM dmtemp LIMIT 1;'
+	INTO d_myrecords
+	USING p_guid;
+	raise notice '% - % d_myrecords 1', d_myrecords, p_guid;
+	
+	INSERT INTO pavankumar_11thmar2022 (receiveddate lmsid paidsearchadgroup,
+										firstname lastname homephone 
+										emailaddress zip city state 
+										lifecycle filtername requesteddivisionname 
+										requestedschoolname requestedcampusnam 
+										requestedcampusexternalreference requestedprogramname 
+										requestedprogramexternalreference advertisingkey 
+										goodlead billablelead capturedlead 
+										reason assignedby advertisingsource 
+										channeltype channelexternalreference 
+										leadprovider pricinggroup fbleadid 
+										receivedmonth paidsearchcampaign 
+										paidsearchkeywords)
+	SELECT * 
+	FROM jsonb_populate_recordset(null::pavankumar_11thmar2022,d_myrecords) ;
+	 
+  	END;
+$dmtemp$;

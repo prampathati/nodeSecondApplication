@@ -1,0 +1,31 @@
+{
+  "name": "herokuapplication",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "cookie-parser": "~1.4.4",
+    "csv": "^6.0.5",
+    "csv-generate": "^4.0.4",
+    "csv-parser": "^3.0.0",
+    "csv-stream": "^0.2.0",
+    "csvtojson": "^2.0.10",
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "fast-csv": "^4.3.6",
+    "http-errors": "~1.6.3",
+    "jade": "~1.11.0",
+    "jsonwebtoken": "^8.5.1",
+    "moment": "^2.29.2",
+    "morgan": "~1.9.1",
+    "nodemon": "^2.0.15",
+    "parse-database-url": "^0.3.0",
+    "pg": "^8.7.3",
+    "pg-copy-streams": "^6.0.2",
+    "request": "^2.88.2",
+    "uuid": "^8.3.2"
+  }
+}
