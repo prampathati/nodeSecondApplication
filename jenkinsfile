@@ -16,7 +16,7 @@ pipeline {
     } 
     stage('Release') {
       steps {
-        echo 'app.js'
+        sh 'node test'
       }
     }
   }
