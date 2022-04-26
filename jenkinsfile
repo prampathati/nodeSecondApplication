@@ -1,0 +1,23 @@
+pipeline {
+  agent any
+
+  tools {nodejs "node"}
+
+  stages {    
+    stage('Build') {
+      steps {
+        checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: '108', url: 'https://github.com/prampathati/nodeSecondApplication.git']]])
+      }
+    }  
+    stage('Test') {
+      steps {
+        bat 'npm install -g express'
+      }
+    } 
+    stage('Release') {
+      steps {
+        echo 'app.js'
+      }
+    }
+  }
+}
